@@ -48,7 +48,7 @@ function render(){const i=list[idx],q=Q[i],vis=VISUALS[q.block];$('#counter').te
   $('#meta').textContent=`CASO ${i+1} DE 60 · TEMA ${q.block}: ${labels[q.block]}`;$('#stem').textContent=q.stem;
   $('#visualTitle').textContent=vis.title;$('#visualImage').innerHTML=vis.svg;$('#visualCaption').textContent=vis.caption;
   $('#opts').innerHTML='';q.options.forEach((v,n)=>{const b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+n)+') '+v;b.disabled=answered.has(i);if(answered.has(i)){const a=answered.get(i);if(n===q.correct)b.classList.add('correct');if(n===a.choice&&!a.ok)b.classList.add('wrong')}b.onclick=()=>choose(i,n);$('#opts').append(b)});
-  const f=$('#feedback');f.className='feedback';if(answered.has(i)){const a=answered.get(i);f.classList.add('show',a.ok?'good':'bad');f.innerHTML=`<strong>${a.ok?'¡Correcto!':'Incorrecto.'}</strong> ${q.why} ${a.ok?'':`<br><strong>Respuesta correcta:</strong> ${String.fromCharCode(65+q.correct)}) ${q.options[q.correct]}`}}
+  const f=$('#feedback');f.className='feedback';if(answered.has(i)){const a=answered.get(i);f.classList.add('show',a.ok?'good':'bad');f.innerHTML=`<strong>${a.ok?'¡Correcto!':'Incorrecto.'}</strong> ${q.why} ${a.ok?'':`<br><strong>Respuesta correcta:</strong> ${String.fromCharCode(65+q.correct)}) ${q.options[q.correct]}`}`}
   $('#prev').disabled=idx===0;$('#next').textContent=idx===list.length-1?'Ver resultado':'Siguiente';$('#quiz').style.display='block';$('#result').classList.remove('show');$('#quizLayout').style.display='grid';
 }
 function choose(i,n){answered.set(i,{ok:n===Q[i].correct,choice:n});render()}
